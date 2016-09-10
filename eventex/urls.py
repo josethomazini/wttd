@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from .core import views
+from .core import views as core_views
+from .subscriptions import views as subscriptions_views
+
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    url(r'^$', core_views.home, name='home'),
+    url(r'^inscricao/$', subscriptions_views.subscribe),
     url(r'^admin/', admin.site.urls),
 ]
