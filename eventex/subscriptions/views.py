@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.contrib import messages
 from .forms import SubscriptionForm
+from .models import Subscription
 
 
 def subscribe(request):
@@ -23,6 +24,8 @@ def create(request):
             'subscriptions/subscription_form.html',
             {'form': form}
         )
+
+    Subscription.objects.create(**form.cleaned_data)
 
     _send_mail(
         'Confirmação de Inscrição',
